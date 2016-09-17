@@ -1,0 +1,35 @@
+#HUNGMAN
+
+
+#open .txt dictionary to import a list of possible words.
+#Have them as a list and pick a random one
+
+print('\n\nJigglesoft Presents...\n\nHUNGMAN 2016 8==D~~\n\n')
+
+import random
+import time
+
+with open('dictionary.txt', 'r') as dictionary:
+    answerWord = list(random.choice(dictionary.readlines()))
+    del answerWord[-1]
+    print(''.join(answerWord)) #This here, this won't be staying, obv
+
+
+blanksList = list(['_'] * len(answerWord))
+print(''.join(blanksList))
+
+guessesRemaining = 10
+print('Guesses remaining: ' + str(guessesRemaining))
+
+letterGuess = input('Have a go: ')
+if letterGuess in answerWord:
+    print(answerWord.index(letterGuess))
+    print('YER!')
+    print('Guesses Remaining: ' + str((guessesRemaining) - 1))
+else:
+    print('NER')
+    print('Guesses Remaining: ' + str((guessesRemaining) - 1))
+
+
+
+
