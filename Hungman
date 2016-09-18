@@ -8,28 +8,60 @@ print('\n\nJigglesoft Presents...\n\nHUNGMAN 2016 8==D~~\n\n')
 
 import random
 import time
-
-with open('dictionary.txt', 'r') as dictionary:
-    answerWord = list(random.choice(dictionary.readlines()))
-    del answerWord[-1]
-    print(''.join(answerWord)) #This here, this won't be staying, obv
+import sys
 
 
-blanksList = list(['_'] * len(answerWord))
-print(''.join(blanksList))
-
-guessesRemaining = 10
-print('Guesses remaining: ' + str(guessesRemaining))
-
-letterGuess = input('Have a go: ')
-if letterGuess in answerWord:
-    print(answerWord.index(letterGuess))
-    print('YER!')
-    print('Guesses Remaining: ' + str((guessesRemaining) - 1))
-else:
-    print('NER')
-    print('Guesses Remaining: ' + str((guessesRemaining) - 1))
+def menu():
+    menuChoice = input('1) New Game\n2) High Scores\n3) Exit\n')
+    if menuChoice == str('1'):
+        theGame()
+    elif menuChoice == str('2'):
+        highScores()
+    elif menuChoice == str('3'):
+        sys.exit
+    else: menu()
 
 
 
+def theGame():
+    with open('dictionary.txt', 'r') as dictionary:
+        word = list(random.choice(dictionary.readlines()))
+    del word[-1]
+    #print(''.join(word)) #prints the answer - this won't be staying, obv
+    
+    hidden = (['_'] * len(word))
+    turns = 20
+    print('Turns remaining: ' + (str(turns)))
+        
+    while hidden != word:
+        guess = list(input('Choose a letter: '))
+        
+        while len(guess) < 1:
+                guess = list(input('Choose a letter: '))
+            
+        correctGuess = False
+        turns -= 1
+        
+        for index in range(len(hidden)):
+                if word[index] == guess[0]:
+                    correctGuess = True
+                    hidden[index] = word[index]
+
+                    
+        if correctGuess == True:
+            print('\nCorrect!')
+            
+        else: print('\nIncorrect.')
+        
+        
+        print(' '.join(hidden))
+        print('Turns remaining: ' + (str(turns)))
+
+        if turns < 1:
+            print('GAME OVER')
+            menu()
+
+    else: print('YOU\'VE ONLY GONE AND FACKIN\' DONE IT!!!')      
+
+menu()
 
