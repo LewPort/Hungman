@@ -1,8 +1,8 @@
 #HUNGMAN
 
 
-#open .txt dictionary to import a list of possible words.
-#Have them as a list and pick a random one
+
+#PROBLEMS: Can't get it to reject an input(guess) that has already been inputted befre
 
 print('\n\nJigglesoft Presents...\n\nHUNGMAN 2016 8==D~~\n\n')
 
